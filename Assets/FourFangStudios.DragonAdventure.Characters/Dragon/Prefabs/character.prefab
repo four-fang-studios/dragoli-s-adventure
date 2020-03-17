@@ -343,6 +343,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '!debugEmitterBlue'
       objectReference: {fileID: 0}
+    - target: {fileID: 500479505808413016, guid: a4b7d64ff90797f4c95f656cb42a307e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6478217707058479365, guid: a4b7d64ff90797f4c95f656cb42a307e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -429,6 +434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '!debugEmitterRed'
+      objectReference: {fileID: 0}
+    - target: {fileID: 500479505808413016, guid: ec997c4d4cdef5b4795ca43b53455cac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6478217707058479365, guid: ec997c4d4cdef5b4795ca43b53455cac,
         type: 3}

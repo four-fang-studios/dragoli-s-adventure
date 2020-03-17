@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: debugEmitterBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 1176497396868324504, guid: eab5fd5196dce8241a420e14530276bb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5712409295741324485, guid: eab5fd5196dce8241a420e14530276bb,
         type: 3}
       propertyPath: m_LocalPosition.x
