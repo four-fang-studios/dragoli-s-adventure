@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/FourFangStudios.DragonAdventure.Scenes/debug.unity
+    guid: 443eaacbc87de8c46a348c0f599151cd
   m_configObjects: {}
