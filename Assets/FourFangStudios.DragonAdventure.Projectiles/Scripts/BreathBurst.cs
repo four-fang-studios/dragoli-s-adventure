@@ -1,36 +1,50 @@
 ﻿using System;
+using FourFangStudios.DragonAdventure.Hitboxes;
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure.Projectiles 
+namespace FourFangStudios.DragonAdventure.Projectiles
 {
   public class BreathBurst : MonoBehaviour
   {
     #region Methods / Public
-      
-      public BreathType BreathType
-      {
-        get => breathType;
-      }
+
+    public BreathType BreathType
+    {
+      get => breathType;
+    }
 
     #endregion
 
     #region Destroy
-    private void DestroyObjectDelayed() 
+    private void DestroyObjectDelayed()
     {
       Destroy(gameObject, 3);
     }
 
-    private void OnCollisionEnter() 
+    private void hitboxOnTriggerEnteredHandler(GameObject hitbox, Collider collider)
     {
       Destroy(gameObject);
     }
+
     #endregion
 
-    #region Monobehavior Events
-    protected void Start() 
+    #region Monobehavior Messages
+
+    protected void Start()
     {
-      DestroyObjectDelayed();
+      // instantiate hitbox
+      this._hitbox = this.hitbox.Instantiate("0");
+      this._hitbox.OnTriggerEntered.AddListener(this.hitboxOnTriggerEnteredHandler);
+
+      DestroyObjectDelayed(); // start countdown
     }
+
+    #endregion
+
+    #region Fields
+
+    private Hitbox _hitbox;
+
     #endregion
 
     #region Inspector / Breath
@@ -39,6 +53,8 @@ namespace FourFangStudios.DragonAdventure.Projectiles
     /// Type of breath.
     /// </summary>
     [SerializeField] private BreathType breathType;
+
+    [SerializeField] private HitboxData hitbox;
 
     #endregion
   }

@@ -122,3 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breathType: 0
+  hitbox:
+    Parent: {fileID: 2719926115433348118}
+    Asset: {fileID: 11400000, guid: 211d77c2891950a4bb4d31a563894bcf, type: 2}
