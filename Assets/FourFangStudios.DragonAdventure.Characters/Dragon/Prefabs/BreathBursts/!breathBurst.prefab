@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9049361390155660878}
   - component: {fileID: 1212263428313788186}
   - component: {fileID: 3861329543478013581}
+  - component: {fileID: 114715936317288738}
   m_Layer: 10
   m_Name: '!breathBurst'
   m_TagString: Untagged
@@ -108,3 +109,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2872306648609470233}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114715936317288738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872306648609470233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8537af8cfd70814d82c4b8a712596b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breathType: 0
