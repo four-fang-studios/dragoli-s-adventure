@@ -5,6 +5,15 @@ namespace FourFangStudios.DragonAdventure.Projectiles
 {
   public class BreathBurst : MonoBehaviour
   {
+    #region Methods / Public
+      
+      public BreathType BreathType
+      {
+        get => breathType;
+      }
+
+    #endregion
+
     #region Destroy
     private void DestroyObjectDelayed() 
     {
@@ -29,7 +38,7 @@ namespace FourFangStudios.DragonAdventure.Projectiles
     /// <summary>
     /// Type of breath.
     /// </summary>
-    [SerializeField] BreathType breathType;
+    [SerializeField] private BreathType breathType;
 
     #endregion
   }
