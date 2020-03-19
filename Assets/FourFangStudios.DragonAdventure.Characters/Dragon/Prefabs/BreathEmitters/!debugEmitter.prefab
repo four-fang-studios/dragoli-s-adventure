@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBurst: {fileID: 0}
+  hitbox:
+    Parent: {fileID: 5712409295741324485}
+    Asset: {fileID: 11400000, guid: 211d77c2891950a4bb4d31a563894bcf, type: 2}
   burstForce: 10
 --- !u!33 &4124092604241329972
 MeshFilter:

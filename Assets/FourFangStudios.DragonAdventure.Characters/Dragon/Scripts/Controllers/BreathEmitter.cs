@@ -1,3 +1,4 @@
+using FourFangStudios.DragonAdventure.Hitboxes;
 using UnityEngine;
 
 namespace FourFangStudios.DragonAdventure.Characters.Dragon
@@ -20,9 +21,9 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
     {
       // instantiate particle at given direction
       GameObject burst = UnityEngine.GameObject.Instantiate(this.prefabBurst, this.transform.position, Quaternion.identity);
-      Rigidbody rigidbody = burst.GetComponent<Rigidbody>();
 
       // add force to the breath
+      Rigidbody rigidbody = burst.GetComponent<Rigidbody>();
       rigidbody.AddForce(
         this.transform.forward * this.burstForce,
         ForceMode.Impulse
