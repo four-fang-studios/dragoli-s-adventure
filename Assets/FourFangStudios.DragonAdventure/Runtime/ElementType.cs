@@ -5,7 +5,7 @@ namespace FourFangStudios.DragonAdventure
   /// <summary>
   /// type of breath of the main character.
   /// </summary>
-  public enum BreathType
+  public enum ElementType
   {
     None = 0,
     DebugRed = 1,

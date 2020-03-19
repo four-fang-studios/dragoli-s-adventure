@@ -8,7 +8,7 @@ namespace FourFangStudios.DragonAdventure.Projectiles
   {
     #region Methods / Public
 
-    public BreathType BreathType
+    public ElementType BreathType
     {
       get => breathType;
     }
@@ -55,7 +55,7 @@ namespace FourFangStudios.DragonAdventure.Projectiles
     /// <summary>
     /// Type of breath.
     /// </summary>
-    [SerializeField] private BreathType breathType;
+    [SerializeField] private ElementType breathType;
 
     /// <summary>
     /// Hitboxes which, when colliding with another hitbox, will destroy this GameObject.

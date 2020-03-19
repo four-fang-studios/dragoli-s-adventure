@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure.Characters.Dragon
+namespace FourFangStudios.DragonAdventure.Actors.Player
 {
   /// agent of the main character
-  public class Agent : MonoBehaviour
+  public class PlayerAgent : MonoBehaviour
   {
     #region Controllers
 
@@ -13,12 +13,12 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
     /// Controller for moving the character around.
     /// UnityEngine CharacterController.
     /// </summary>
-    [SerializeField] Characters.MovementController movement;
+    [SerializeField] Actors.MovementController movement;
 
     /// <summary>
     /// Controller for breath.
     /// </summary>
-    [SerializeField] Dragon.BreathController breath;
+    [SerializeField] Player.BreathController breath;
 
     #endregion
 
@@ -70,7 +70,7 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
     protected void Start()
     {
       // disable breath types
-      this.breath.SetActiveBreathType(BreathType.None);
+      this.breath.SetActiveBreathType(ElementType.None);
     }
 
     protected void Update()
@@ -93,15 +93,15 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
       // TODO: make axis
       if (Input.GetKeyDown(KeyCode.Alpha0))
       {
-        this.breath.SetActiveBreathType(BreathType.None);
+        this.breath.SetActiveBreathType(ElementType.None);
       }
       else if (Input.GetKeyDown(KeyCode.Alpha1))
       {
-        this.breath.SetActiveBreathType(BreathType.DebugRed);
+        this.breath.SetActiveBreathType(ElementType.DebugRed);
       }
       else if (Input.GetKeyDown(KeyCode.Alpha2))
       {
-        this.breath.SetActiveBreathType(BreathType.DebugBlue);
+        this.breath.SetActiveBreathType(ElementType.DebugBlue);
       }
     }
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure.Characters.Dragon
+namespace FourFangStudios.DragonAdventure.Actors.Player
 {
   /// <summary>
   /// Controls breath emitters.
@@ -13,12 +13,12 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
     /// <summary>
     /// Type of the breath to emit.
     /// </summary>
-    public BreathType ActiveBreathType { get; private set; } = BreathType.None;
+    public ElementType ActiveBreathType { get; private set; } = ElementType.None;
 
     /// <summary>
     /// Set the breath type.
     /// </summary>
-    public void SetActiveBreathType(BreathType value)
+    public void SetActiveBreathType(ElementType value)
     {
       // deactive the active breath emitter, if there is one
       if (this.GetActiveBreathEmitter(out BreathEmitter breathEmitterActive))
@@ -29,15 +29,15 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
       // activate the new breath emitter
       switch (value)
       {
-        case BreathType.None:
+        case ElementType.None:
           break;
 
-        case BreathType.DebugBlue:
+        case ElementType.DebugBlue:
           this.emitterBlue.gameObject.SetActive(true);
 
           break;
 
-        case BreathType.DebugRed:
+        case ElementType.DebugRed:
           this.emitterRed.gameObject.SetActive(true);
 
           break;
@@ -64,9 +64,9 @@ namespace FourFangStudios.DragonAdventure.Characters.Dragon
 
       switch (this.ActiveBreathType)
       {
-        case BreathType.None: breathEmitter = null; return false;
-        case BreathType.DebugRed: breathEmitter = this.emitterRed; return true;
-        case BreathType.DebugBlue: breathEmitter = this.emitterBlue; return true;
+        case ElementType.None: breathEmitter = null; return false;
+        case ElementType.DebugRed: breathEmitter = this.emitterRed; return true;
+        case ElementType.DebugBlue: breathEmitter = this.emitterBlue; return true;
         default: throw new ArgumentException($"{nameof(ActiveBreathType)} '{this.ActiveBreathType}' not supported! Did you add an emitter?");
       }
 

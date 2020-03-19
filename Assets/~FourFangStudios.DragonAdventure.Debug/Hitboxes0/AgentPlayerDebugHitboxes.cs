@@ -6,7 +6,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
   /// <summary>
   /// Agent for debugging the HitboxController.
   /// </summary>
-  public class AgentPlayer : MonoBehaviour
+  public class AgentPlayerDebugHitboxes : MonoBehaviour
   {
     protected void hitboxOffenseEnable(bool doHurt)
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure.Characters
+namespace FourFangStudios.DragonAdventure.Actors
 {
   /// <summary>
   /// Movement controller for characters.

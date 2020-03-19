@@ -1,7 +1,7 @@
 using FourFangStudios.DragonAdventure.Hitboxes;
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure.Characters.Dragon
+namespace FourFangStudios.DragonAdventure.Actors.Player
 {
   /// <summary>
   /// Emits breath from this transform.

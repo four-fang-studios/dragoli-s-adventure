@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1025344058970414526}
   - component: {fileID: 1025344058970414527}
   - component: {fileID: 1025344058970414465}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1025344059000875863}
   - component: {fileID: 1025344059000875856}
   - component: {fileID: 1025344059000875857}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: hurtBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

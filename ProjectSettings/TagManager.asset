@@ -14,10 +14,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - dragon
-  - dragonBreath
-  - stage
-  - enemy
+  - bodyPlayer
+  - bodyProjectile
+  - bodyEnemy
+  - 
   - 
   - 
   - 
@@ -35,7 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - stage
   - 
   m_SortingLayers:
   - name: Default

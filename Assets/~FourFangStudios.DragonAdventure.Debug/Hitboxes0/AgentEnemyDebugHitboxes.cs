@@ -6,7 +6,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
   /// <summary>
   /// Agent for debugging the HitboxSetController.
   /// </summary>
-  public class AgentEnemy : MonoBehaviour
+  public class AgentEnemyDebugHitboxes : MonoBehaviour
   {
     protected void Start()
     {
