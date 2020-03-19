@@ -30,20 +30,23 @@ namespace FourFangStudios.DragonAdventure.Projectiles
 
     #region Monobehavior Messages
 
-    protected void Start()
+    protected void Reset()
     {
-      // instantiate hitbox
-      this._hitbox = this.hitbox.Instantiate("0");
-      this._hitbox.OnEntered.AddListener(this.hitboxOnEnteredHandler);
-
-      DestroyObjectDelayed(); // start countdown
+      this.hitboxesDestroy = this.gameObject.GetComponentsInChildren<Hitbox>();
     }
 
-    #endregion
+    protected void Awake()
+    {
+      foreach (Hitbox iHitbox in this.hitboxesDestroy)
+      {
+        iHitbox.OnEntered.AddListener(this.hitboxOnEnteredHandler);
+      }
+    }
 
-    #region Fields
-
-    private Hitbox _hitbox;
+    protected void Start()
+    {
+      DestroyObjectDelayed(); // start countdown
+    }
 
     #endregion
 
@@ -54,7 +57,10 @@ namespace FourFangStudios.DragonAdventure.Projectiles
     /// </summary>
     [SerializeField] private BreathType breathType;
 
-    [SerializeField] private HitboxData hitbox;
+    /// <summary>
+    /// Hitboxes which, when colliding with another hitbox, will destroy this GameObject.
+    /// </summary>
+    [SerializeField] private Hitbox[] hitboxesDestroy;
 
     #endregion
   }

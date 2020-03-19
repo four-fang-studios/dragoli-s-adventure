@@ -11,6 +11,15 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
   {
     // NEGA: we may find it necessary to "filter" collision events on specific hitboxes. eg, by tag
 
+    #region Properties
+
+    /// <summary>
+    /// Id of the "group" of hitboxes this hitbox is ine.
+    /// </summary>
+    public string GroupId;
+
+    #endregion
+
     #region UnityEvents
 
     /// <summary>
@@ -32,7 +41,7 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
 
     #region MonoBehaviour Messages
 
-    private MissingComponentException newException(Collider collider) => new MissingComponentException($"No Hitbox Component on {collider.gameObject.name}. Ensure hitboxes can only collide with other hitboxes in the Physics matrix.");
+    private MissingComponentException newException(Collider collider) => new MissingComponentException($"No Hitbox Component on {collider.gameObject.name}. Ensure the Hitbox is in a hitbox layer. Ensure that hitboxes layers collide with other hitboxes lyaers in the Layer Collision Matrix.");
 
     /// <summary>
     /// MonoBehaviour message.

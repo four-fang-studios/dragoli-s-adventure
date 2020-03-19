@@ -18,6 +18,7 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
       hitboxEntity.transform.localScale = Vector3.one;
 
       Hitbox hitbox = hitboxEntity.AddComponent<Hitbox>(); // hitbox component
+      hitbox.GroupId = thisData.GroupId;
 
       // add collider to hitbox via shape
       Collider collider;
@@ -55,9 +56,9 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
       }
       collider.isTrigger = true;
 
-      // add kinematic rigidbody
+      // add rigidbody
       Rigidbody rigidbody = hitboxEntity.AddComponent<Rigidbody>();
-      rigidbody.isKinematic = true;
+      rigidbody.isKinematic = false;
       rigidbody.useGravity = false;
       rigidbody.mass = 1;
       rigidbody.drag = 0;

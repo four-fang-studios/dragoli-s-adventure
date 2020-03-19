@@ -11,7 +11,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
     protected void Start()
     {
       // setup defensive hitboxes
-      this.hitboxesOffensive.CreateGroup("offense");
+      this.hitboxesOffensive.SetGroupCollidersEnabled("offense", true);
     }
 
     protected void Update()

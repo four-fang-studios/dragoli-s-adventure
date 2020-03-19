@@ -11,6 +11,11 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
   public struct HitboxData
   {
     /// <summary>
+    /// GroupId of the Hitbox to create.
+    /// </summary>
+    public string GroupId;
+
+    /// <summary>
     /// Layer to instantiate the hitbox into.
     /// </summary>
     public Layer Layer;
