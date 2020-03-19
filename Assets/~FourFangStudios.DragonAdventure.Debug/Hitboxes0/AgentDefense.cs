@@ -13,7 +13,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
       // setup defensive hitboxes
       foreach (Hitbox iHitbox in this.hitboxesDefensive.CreateGroup("defense"))
       {
-        iHitbox.OnTriggerEntered.AddListener(this.HitboxDefensiveOnTriggerEntered);
+        iHitbox.OnEntered.AddListener(this.HitboxDefensiveOnTriggerEntered);
       }
     }
 
@@ -21,9 +21,10 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
     /// Raised when hitbox defensive collides with another.
     /// hitbox which entered this one.
     /// </summary>
-    protected void HitboxDefensiveOnTriggerEntered(GameObject hitbox, Collider other)
+    protected void HitboxDefensiveOnTriggerEntered(Hitbox source, Hitbox other)
     {
-      hitbox.GetComponentInParent<Renderer>().material.color = Color.red;
+      Renderer renderer = source.GetComponentInParent<Renderer>();
+      if (renderer) renderer.material.color = Color.red;
     }
 
     [SerializeField] private HitboxGroupController hitboxesDefensive;

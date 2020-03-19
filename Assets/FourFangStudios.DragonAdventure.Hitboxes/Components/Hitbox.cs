@@ -5,7 +5,7 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
   /// <summary>
   /// Hitbox or a Hurtbox.
   /// Hitboxes are kinematic rigidbody trigger colliders.
-  /// Bubbles up collision/ trigger messages via UnityEvents.
+  /// Bubbles up OnTrigger messages via UnityEvents.
   /// </summary>
   public class Hitbox : MonoBehaviour
   {
@@ -16,66 +16,59 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// <summary>
     /// Raised by MonoBehaviour message.
     /// </summary>
-    public UnityEventGameObjectCollision OnCollisionEntered = new UnityEventGameObjectCollision();
+    public UnityEventHitboxHitbox OnEntered = new UnityEventHitboxHitbox();
 
     /// <summary>
     /// Raised by MonoBehaviour message.
     /// </summary>
-    public UnityEventGameObjectCollision OnCollisionExited = new UnityEventGameObjectCollision();
+    public UnityEventHitboxHitbox OnExited = new UnityEventHitboxHitbox();
 
     /// <summary>
     /// Raised by MonoBehaviour message.
     /// </summary>
-    public UnityEventGameObjectCollision OnCollisionStayed = new UnityEventGameObjectCollision();
-
-    /// <summary>
-    /// Raised by MonoBehaviour message.
-    /// </summary>
-    public UnityEventGameObjectCollider OnTriggerEntered = new UnityEventGameObjectCollider();
-
-    /// <summary>
-    /// Raised by MonoBehaviour message.
-    /// </summary>
-    public UnityEventGameObjectCollider OnTriggerExited = new UnityEventGameObjectCollider();
-
-    /// <summary>
-    /// Raised by MonoBehaviour message.
-    /// </summary>
-    public UnityEventGameObjectCollider OnTriggerStayed = new UnityEventGameObjectCollider();
+    public UnityEventHitboxHitbox OnStayed = new UnityEventHitboxHitbox();
 
     #endregion
 
     #region MonoBehaviour Messages
 
-    /// <summary>
-    /// MonoBehaviour message.
-    /// </summary>
-    protected void OnTriggerEnter(Collider collider) => this.OnTriggerEntered.Invoke(this.gameObject, collider);
+    private MissingComponentException newException(Collider collider) => new MissingComponentException($"No Hitbox Component on {collider.gameObject.name}. Ensure hitboxes can only collide with other hitboxes in the Physics matrix.");
 
     /// <summary>
     /// MonoBehaviour message.
     /// </summary>
-    protected void OnTriggerExit(Collider collider) => this.OnTriggerExited.Invoke(this.gameObject, collider);
+    protected void OnTriggerEnter(Collider collider)
+    {
+      Hitbox hitbox = collider.gameObject.GetComponent<Hitbox>();
+
+      if (!hitbox) throw newException(collider);
+
+      this.OnEntered.Invoke(this, hitbox);
+    }
 
     /// <summary>
     /// MonoBehaviour message.
     /// </summary>
-    protected void OnTriggerStay(Collider collider) => this.OnTriggerStayed.Invoke(this.gameObject, collider);
+    protected void OnTriggerExit(Collider collider)
+    {
+      Hitbox hitbox = collider.gameObject.GetComponent<Hitbox>();
+
+      if (!hitbox) throw newException(collider);
+
+      this.OnExited.Invoke(this, hitbox);
+    }
 
     /// <summary>
     /// MonoBehaviour message.
     /// </summary>
-    protected void OnCollisionEnter(Collision collision) => this.OnCollisionEntered.Invoke(this.gameObject, collision);
+    protected void OnTriggerStay(Collider collider)
+    {
+      Hitbox hitbox = collider.gameObject.GetComponent<Hitbox>();
 
-    /// <summary>
-    /// MonoBehaviour message.
-    /// </summary>
-    protected void OnCollisionExit(Collision collision) => this.OnCollisionExited.Invoke(this.gameObject, collision);
+      if (!hitbox) throw newException(collider);
 
-    /// <summary>
-    /// MonoBehaviour message.
-    /// </summary>
-    protected void OnCollisionStay(Collision collision) => this.OnCollisionStayed.Invoke(this.gameObject, collision);
+      this.OnStayed.Invoke(this, hitbox);
+    }
 
     #endregion
   }

@@ -21,9 +21,9 @@ namespace FourFangStudios.DragonAdventure.Projectiles
       Destroy(gameObject, 3);
     }
 
-    private void hitboxOnTriggerEnteredHandler(GameObject hitbox, Collider collider)
+    private void hitboxOnEnteredHandler(Hitbox source, Hitbox other)
     {
-      Destroy(gameObject);
+      Destroy(this.gameObject);
     }
 
     #endregion
@@ -34,7 +34,7 @@ namespace FourFangStudios.DragonAdventure.Projectiles
     {
       // instantiate hitbox
       this._hitbox = this.hitbox.Instantiate("0");
-      this._hitbox.OnTriggerEntered.AddListener(this.hitboxOnTriggerEnteredHandler);
+      this._hitbox.OnEntered.AddListener(this.hitboxOnEnteredHandler);
 
       DestroyObjectDelayed(); // start countdown
     }
