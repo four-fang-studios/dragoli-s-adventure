@@ -27,13 +27,18 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// </summary>
     public IEnumerable<Hitbox> GetGroup(string groupId) => this._hitboxes[groupId];
 
+    /// <summary>
+    /// Names of each hitbox group.
+    /// </summary>
+    public IEnumerable<string> GroupNames => this._hitboxes.Keys;
+
     #endregion
 
     #region MonoBehaviour Messages
 
     protected void Awake()
     {
-      // convert hitboxes into a dictionary
+      // convert child hitbox into a dictionary
 
       Hitbox[] hitboxComponents = this.GetComponentsInChildren<Hitbox>();
       foreach (Hitbox iHitbox in hitboxComponents)
