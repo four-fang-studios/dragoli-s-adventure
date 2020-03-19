@@ -10,7 +10,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
   {
     protected void Start()
     {
-      this.hitboxesDefensive.SetGroupCollidersEnabled("defense", true);
+      this.hitboxesDefensive.SetGroupActive("defense", true);
 
       // setup defensive hitboxes
       foreach (Hitbox iHitbox in this.hitboxesDefensive.GetGroup("defense"))

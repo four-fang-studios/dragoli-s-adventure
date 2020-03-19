@@ -13,12 +13,12 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// <summary>
     /// Set Collider.enabled of all Hitbox with GroupId.
     /// </summary>
-    public void SetGroupCollidersEnabled(string groupId, bool value)
+    public void SetGroupActive(string groupId, bool value)
     {
       IEnumerable<Hitbox> hitboxGroup = this._hitboxes[groupId];
       foreach (Hitbox iHitbox in hitboxGroup)
       {
-        iHitbox.gameObject.GetComponent<Collider>().enabled = value;
+        iHitbox.gameObject.SetActive(value);
       }
     }
 

@@ -10,7 +10,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
   {
     protected void hitboxOffenseEnable(bool doHurt)
     {
-      this.hitboxesOffensive.SetGroupCollidersEnabled("offense", doHurt);
+      this.hitboxesOffensive.SetGroupActive("offense", doHurt);
 
       foreach (Hitbox iHitbox in this.hitboxesOffensive.GetGroup("offense"))
       {
