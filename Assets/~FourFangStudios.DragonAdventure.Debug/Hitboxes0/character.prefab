@@ -526,16 +526,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5983938691772041178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd7046e1f4231c4398179bf8b05aec7, type: 3}
+  m_Script: {fileID: 11500000, guid: 985ec2b0b4d9b5a498fa777989f8ebd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxGroups:
   - Id: defense
     HitboxDatas:
-    - Parent: {fileID: 5983938691772041182}
-      Asset: {fileID: 11400000, guid: f90fa0ef6c785934499a063d322c10db, type: 2}
-    - Parent: {fileID: 453996950}
-      Asset: {fileID: 11400000, guid: d97cbfc533100b34a885bd00fe17164f, type: 2}
+      array:
+      - Parent: {fileID: 5983938691772041182}
+        Asset: {fileID: 0}
 --- !u!1 &8897940886977870997
 GameObject:
   m_ObjectHideFlags: 0

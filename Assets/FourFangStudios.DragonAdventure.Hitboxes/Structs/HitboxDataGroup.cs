@@ -1,4 +1,5 @@
 using System;
+using Malee;
 
 namespace FourFangStudios.DragonAdventure.Hitboxes
 {
@@ -16,6 +17,7 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// <summary>
     /// Hitbox Data within this set.
     /// </summary>
-    public HitboxData[] HitboxDatas;
+    [Reorderable(singleLine = true)]
+    public HitboxDataList HitboxDatas;
   }
 }

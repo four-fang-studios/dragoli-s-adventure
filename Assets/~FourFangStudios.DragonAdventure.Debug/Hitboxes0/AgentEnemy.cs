@@ -24,7 +24,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
       this.hurtball.transform.RotateAround(this.transform.position, Vector3.up, 60 * Time.deltaTime);
     }
 
-    [SerializeField] private HitboxGroupController hitboxesOffensive;
+    [SerializeField] private HitboxController hitboxesOffensive;
 
     [SerializeField] private GameObject hurtball;
   }

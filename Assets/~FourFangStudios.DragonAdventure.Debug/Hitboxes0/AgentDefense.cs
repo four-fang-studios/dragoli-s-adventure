@@ -27,6 +27,6 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
       if (renderer) renderer.material.color = Color.red;
     }
 
-    [SerializeField] private HitboxGroupController hitboxesDefensive;
+    [SerializeField] private HitboxController hitboxesDefensive;
   }
 }

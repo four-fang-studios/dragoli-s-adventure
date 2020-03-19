@@ -8,25 +8,25 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// <summary>
     /// Instantiate a Hitbox entity from a HitboxAsset.
     /// </summary>
-    static public Hitbox Instantiate(this HitboxAsset thisAsset, Transform parent, string name)
+    static public Hitbox Instantiate(this HitboxData thisData, string name)
     {
       // initialize hitbox enitty
       GameObject hitboxEntity = new GameObject($"hitbox-{name}");
-      hitboxEntity.layer = thisAsset.Layer.Index;
-      hitboxEntity.transform.parent = parent;
-      hitboxEntity.transform.localPosition = thisAsset.LocalPosition;
+      hitboxEntity.layer = thisData.Layer.Index;
+      hitboxEntity.transform.parent = thisData.Parent;
+      hitboxEntity.transform.localPosition = thisData.LocalPosition;
       hitboxEntity.transform.localScale = Vector3.one;
 
       Hitbox hitbox = hitboxEntity.AddComponent<Hitbox>(); // hitbox component
 
       // add collider to hitbox via shape
       Collider collider;
-      switch (thisAsset.Shape)
+      switch (thisData.Shape)
       {
         case Shape.Sphere:
           SphereCollider sphereCollider = hitboxEntity.AddComponent<SphereCollider>();
 
-          sphereCollider.radius = thisAsset.Size.x;
+          sphereCollider.radius = thisData.Size.x;
 
           collider = sphereCollider;
 
@@ -35,10 +35,10 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
 
           CapsuleCollider capsuleCollider = hitboxEntity.AddComponent<CapsuleCollider>();
 
-          capsuleCollider.radius = thisAsset.Size.x;
-          capsuleCollider.height = thisAsset.Size.y;
+          capsuleCollider.radius = thisData.Size.x;
+          capsuleCollider.height = thisData.Size.y;
 
-          capsuleCollider.direction = thisAsset.Direction;
+          capsuleCollider.direction = thisData.Direction;
 
           collider = capsuleCollider;
 
@@ -46,12 +46,12 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
         case Shape.Box:
           BoxCollider boxCollider = hitboxEntity.AddComponent<BoxCollider>();
 
-          boxCollider.size = thisAsset.Size;
+          boxCollider.size = thisData.Size;
 
           collider = boxCollider;
 
           break;
-        default: throw new NotSupportedException($"Hitbox shape '{thisAsset.Shape}' not supported.");
+        default: throw new NotSupportedException($"Hitbox shape '{thisData.Shape}' not supported.");
       }
       collider.isTrigger = true;
 
@@ -65,11 +65,5 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
 
       return hitbox;
     }
-
-    /// <summary>
-    /// Instantiate a Hitbox entity from a HitboxData.
-    /// </summary>
-    static public Hitbox Instantiate(this HitboxData thisData, string name) =>
-      thisData.Asset.Instantiate(thisData.Parent, name);
   }
 }

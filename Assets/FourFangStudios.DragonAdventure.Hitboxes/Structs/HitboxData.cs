@@ -11,13 +11,35 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
   public struct HitboxData
   {
     /// <summary>
+    /// Layer to instantiate the hitbox into.
+    /// </summary>
+    public Layer Layer;
+
+    /// <summary>
     /// Bone to be instantiated upon.
     /// </summary>
     public Transform Parent;
 
     /// <summary>
-    /// Asset to isntantiate from.
+    /// Shape of the hitbox.
+    /// Determines collider.
     /// </summary>
-    public HitboxAsset Asset;
+    public Shape Shape;
+
+    /// <summary>
+    /// Size of the hitbox.
+    /// </summary>
+    public Vector3 Size;
+
+    /// <summary>
+    /// CapsuleCollider.direction.
+    /// Capsules only.
+    /// </summary>
+    public int Direction;
+
+    /// <summary>
+    /// Local position of the hitbox.
+    /// </summary>
+    public Vector3 LocalPosition;
   }
 }

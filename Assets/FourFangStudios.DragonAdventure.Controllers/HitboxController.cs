@@ -9,7 +9,7 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
   /// Has groups of hitboxes which can be created/ destroyed with an id.
   /// Only one collection of hitboxes can be "active" (created) at a time.
   /// </summary>
-  public class HitboxGroupController : MonoBehaviour
+  public class HitboxController : MonoBehaviour
   {
     #region Methods / Public
 
@@ -74,10 +74,37 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
 
     #region MonoBehaviour Messages
 
-    public void Awake()
+    protected void Awake()
     {
       // convert hitboxes into a dictionary
       this._hitboxGroupsData = this.hitboxGroups.ToDictionary((i) => i.Id, (i) => i);
+    }
+
+    protected void OnDrawGizmosSelected()
+    {
+      for (int i = 0; i < this.hitboxGroups.Count; i++)
+      {
+        HitboxDataGroup iGroup = this.hitboxGroups[i];
+
+        // TODO: convert HitboxGroups into a reorderable list so can get selected, and only draw selected
+
+        // iterate hitboxes in group
+        for (int j = 0; j < iGroup.HitboxDatas.Count; j++)
+        {
+          HitboxData jData = iGroup.HitboxDatas[j];
+
+          //UnityEngine.Debug.Log($"{i}, {j}");
+
+          Vector3 position = jData.Parent.TransformPoint(jData.LocalPosition);
+
+          switch (jData.Shape)
+          {
+            case Shape.Sphere: Gizmos.DrawWireSphere(position, jData.Size.x); break;
+            case Shape.Box: Gizmos.DrawWireCube(position, jData.Size); break;
+            case Shape.Capsule: GizmoUtils.DrawWireCapsule(position, Quaternion.identity, jData.Size.x, jData.Size.y); break;
+          }
+        }
+      }
     }
 
     #endregion
@@ -105,7 +132,7 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// <summary>
     /// HitboxDataGroups, which will be cached to a dictionary.
     /// </summary>
-    [SerializeField] private HitboxDataGroup[] hitboxGroups;
+    [SerializeField] private List<HitboxDataGroup> hitboxGroups = new List<HitboxDataGroup>();
 
     #endregion
   }
