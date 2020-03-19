@@ -1087,7 +1087,6 @@ GameObject:
   - component: {fileID: 348847453}
   - component: {fileID: 348847456}
   - component: {fileID: 348847459}
-  - component: {fileID: 348847457}
   - component: {fileID: 348847458}
   - component: {fileID: 348847452}
   m_Layer: 12
@@ -1185,23 +1184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitboxesOffensive: {fileID: 348847458}
   hurtball: {fileID: 452594569}
---- !u!114 &348847457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348847451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd7046e1f4231c4398179bf8b05aec7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitboxGroups:
-  - Id: defense
-    HitboxDatas:
-    - Parent: {fileID: 348847455}
-      Asset: {fileID: 11400000, guid: 67407c581ec5a694b8ea08f76c918599, type: 2}
 --- !u!114 &348847458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,6 +1201,10 @@ MonoBehaviour:
     HitboxDatas:
     - Parent: {fileID: 452594570}
       Asset: {fileID: 11400000, guid: c59ddc6f13bc54540a65fc9bb2a4521c, type: 2}
+  - Id: defense
+    HitboxDatas:
+    - Parent: {fileID: 348847455}
+      Asset: {fileID: 11400000, guid: 67407c581ec5a694b8ea08f76c918599, type: 2}
 --- !u!114 &348847459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5821fb80d0a05ba4a9018c98e41c0418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxesDefensive: {fileID: 348847457}
+  hitboxesDefensive: {fileID: 348847458}
 --- !u!1 &452594569
 GameObject:
   m_ObjectHideFlags: 0

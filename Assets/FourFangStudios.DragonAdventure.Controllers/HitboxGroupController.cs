@@ -16,80 +16,59 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     /// <summary>
     /// Create Hitbox entities for each HitboxData in the HitboxDataGroup.
     /// </summary>
-    public void CreateHitboxGroup(string groupId)
+    public Hitbox[] CreateGroup(string groupId)
     {
-      // check there are no active hitboxes first
-      if (this.IsHitboxesActive)
-      {
-        throw new InvalidOperationException("There are already active hitboxes! Clear them before creating new hitboxes.");
-      }
+      if (this._hitboxesActive.ContainsKey(groupId)) throw new InvalidOperationException($"HitboxGroup with groupId '{groupId}' already created.");
 
-      // get hitbox collection. throws an exception if there is no hitbox set with that id
-      HitboxDataGroup hitboxDataGroup = this._hitboxGroups[groupId];
+      // get hitbox group data.
+      HitboxDataGroup hitboxDataGroup = this._hitboxGroupsData[groupId];
 
       // allocate new active hitboxes
-      this._hitboxesActive = new Hitbox[hitboxDataGroup.HitboxDatas.Length];
+      Hitbox[] hitboxes = new Hitbox[hitboxDataGroup.HitboxDatas.Length];
 
       // create each hitbox
       for (int i = 0; i < hitboxDataGroup.HitboxDatas.Length; i++)
       {
         // create hitbox
-        this._hitboxesActive[i] = hitboxDataGroup.HitboxDatas[i].Instantiate($"{groupId}-{i}");
+        hitboxes[i] = hitboxDataGroup.HitboxDatas[i].Instantiate($"{groupId}-{i}");
       }
+
+      // add hitbox groups
+      this._hitboxesActive.Add(groupId, hitboxes);
+
+      return hitboxes;
     }
 
     /// <summary>
     /// Clear active hitboxes.
     /// </summary>
-    public bool ClearActiveGroup()
+    public void DestroyGroup(string groupId)
     {
-      if (this.IsHitboxesActive)
+      Hitbox[] hitboxes = this._hitboxesActive[groupId];
+
+      // destroy active hitboxes
+      // NEGA: this may become a performance bottleneck, depending on the amount of hitboxes created and destroyed
+      for (int i = 0; i < hitboxes.Length; i++)
       {
-        // there are active hitboxes
-
-        // destroy active hitboxes
-        // NEGA: this may become a performance bottleneck, depending on the amount of hitboxes created and destroyed
-        for (int i = 0; i < this._hitboxesActive.Length; i++)
-        {
-          UnityEngine.Object.Destroy(this._hitboxesActive[i]);
-        }
-
-        this._hitboxesActive = null;
-
-        return true;
+        UnityEngine.Object.Destroy(hitboxes[i]);
       }
-      else
-      {
-        // there are no active hitboxes
 
-        return false;
+      this._hitboxesActive.Remove(groupId);
+    }
+
+    public void SetGroupCollidersEnabled(string groupId, bool value)
+    {
+      Hitbox[] hitboxes = this._hitboxesActive[groupId];
+      for (int i = 0; i < hitboxes.Length; i++)
+      {
+        hitboxes[i].gameObject.GetComponent<Collider>().enabled = value;
       }
     }
 
     /// <summary>
-    /// Convenience method to quickly set Collider.enabled on active hitboxes.
-    /// (eg, on taking damage)
+    /// Try to get an active group of hitboxes.
     /// </summary>
-    public void SetActiveHitboxCollidersEnabled(bool value)
-    {
-      if (this._hitboxesActive == null) return;
-
-      for (int i = 0; i < this._hitboxesActive.Length; i++)
-      {
-        this._hitboxesActive[i].GetComponent<Collider>().enabled = value;
-      }
-    }
-
-    /// <summary>
-    /// Are there any active hitboxes?
-    /// </summary>
-    public bool IsHitboxesActive => this._hitboxesActive != null && this._hitboxesActive.Any();
-
-    /// <summary>
-    /// The active Hitbox Components.
-    /// Returned value may be null.
-    /// </summary>
-    public Hitbox[] HitboxesActive => this._hitboxesActive;
+    public Hitbox[] GetActiveGroup(string groupId) => this._hitboxesActive[groupId];
 
     #endregion
 
@@ -97,8 +76,8 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
 
     public void Awake()
     {
-      // convert hitboxes into a dictioanry
-      this._hitboxGroups = this.hitboxGroups.ToDictionary((i) => i.Id, (i) => i);
+      // convert hitboxes into a dictionary
+      this._hitboxGroupsData = this.hitboxGroups.ToDictionary((i) => i.Id, (i) => i);
     }
 
     #endregion
@@ -106,16 +85,18 @@ namespace FourFangStudios.DragonAdventure.Hitboxes
     #region Fields
 
     /// <summary>
-    /// Active hitboxes.
+    /// HitboxData, stored into a dictionary.
+    /// key: HitboxDataCollection.Id.
+    /// value: Hitbox entities.
     /// </summary>
-    private Hitbox[] _hitboxesActive = null;
+    private IDictionary<string, Hitbox[]> _hitboxesActive = new Dictionary<string, Hitbox[]>();
 
     /// <summary>
     /// HitboxData, stored into a dictionary.
     /// key: HitboxDataCollection.Id.
     /// value: HitboxDataCollection.Hitboxes.
     /// </summary>
-    private IDictionary<string, HitboxDataGroup> _hitboxGroups;
+    private IDictionary<string, HitboxDataGroup> _hitboxGroupsData;
 
     #endregion
 

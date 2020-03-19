@@ -11,8 +11,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Hitboxes0
     protected void Start()
     {
       // setup defensive hitboxes
-      this.hitboxesDefensive.CreateHitboxGroup("defense");
-      foreach (Hitbox iHitbox in this.hitboxesDefensive.HitboxesActive)
+      foreach (Hitbox iHitbox in this.hitboxesDefensive.CreateGroup("defense"))
       {
         iHitbox.OnTriggerEntered.AddListener(this.HitboxDefensiveOnTriggerEntered);
       }
