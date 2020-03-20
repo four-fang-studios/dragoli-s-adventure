@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace FourFangStudios.DragonAdventure
+namespace FourFangStudios.DragonAdventure.Runtime
 {
   /// <summary>
   /// UnityEngine.UnityEvent for a UnityEngine.Collision.

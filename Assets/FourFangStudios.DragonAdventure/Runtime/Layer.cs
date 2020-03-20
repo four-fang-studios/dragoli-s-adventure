@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure
+namespace FourFangStudios.DragonAdventure.Runtime
 {
 
   /// <summary>

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FourFangStudios.DragonAdventure
+namespace FourFangStudios.DragonAdventure.Runtime
 {
   static public class LayerUtils
   {
