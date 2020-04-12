@@ -5,9 +5,9 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
 {
   public class MeanGreeter : IGreeter
   {
-    private readonly BehaviorSubject<int> _greets = new BehaviorSubject<int>(0);
+    private readonly BehaviorSubject<uint> _greets = new BehaviorSubject<uint>(0);
 
-    public IObservable<int> Greets => this._greets.AsObservable();
+    public IObservable<uint> Greets => this._greets.AsObservable();
 
     public void Greet(string name)
     {

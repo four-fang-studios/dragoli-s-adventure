@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/FourFangStudios.DragonAdventure/~Debug/debug.unity
+    path: Assets/FourFangStudios.DragonAdventure.Debug/Debug.unity
     guid: 443eaacbc87de8c46a348c0f599151cd
   - enabled: 1
     path: Assets/FourFangStudios.DragonAdventure/~Debug/Hitboxes0/debugHitboxes.unity

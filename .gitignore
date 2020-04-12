@@ -71,3 +71,4 @@ crashlytics-build.properties
 
 # Other IDE project files and folders
 .vscode/
+.idea/
