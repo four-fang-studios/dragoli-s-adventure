@@ -27,6 +27,9 @@ public class PauseGui : MonoBehaviour
   }
 
   public void Resume() {
+    if (settingsPanel.activeInHierarchy) {
+      settingsPanel.SetActive(false);
+    }
     pausePanel.SetActive(false);
     Time.timeScale = 1f;
     IsGamePaused = false;
