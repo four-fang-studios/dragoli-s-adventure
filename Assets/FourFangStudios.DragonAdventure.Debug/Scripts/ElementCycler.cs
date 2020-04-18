@@ -51,16 +51,18 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
     }
     public Element getElementAtCurrentIndexOffset(int offset) 
     { 
+      int elementCount = this._elements.Length;
       int desiredIndex = (this._currentIndex + offset);
       
       while (desiredIndex < 0) {
-        desiredIndex += this._elements.Length;
+        desiredIndex += elementCount;
       }
-      int maxIndex = (this._elements.Length-1);
+      int maxIndex = (elementCount-1);
       while (desiredIndex > maxIndex) {
-        desiredIndex -= this._elements.Length;
+        desiredIndex -= elementCount;
       }
 
+      UnityEngine.Debug.Log(desiredIndex);
       return this._elements[desiredIndex];
     }
 
