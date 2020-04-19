@@ -62,7 +62,6 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
         desiredIndex -= elementCount;
       }
 
-      UnityEngine.Debug.Log(desiredIndex);
       return this._elements[desiredIndex];
     }
 
