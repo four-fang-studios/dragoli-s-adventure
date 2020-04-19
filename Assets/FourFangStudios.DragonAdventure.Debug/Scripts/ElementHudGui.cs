@@ -55,8 +55,7 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
       for (int i = 0; i < arraySize; i++) {
         Element e = this._elementCycler.getElementAtCurrentIndexOffset(i-halfArraySize);
         //this.elementIcons[i].texture = this._elementIconMap[e]; // ADD TEXTURES
-        this.elementIcons[i].color = 
-        new Color(e.Color.r, e.Color.g, e.Color.b, 1);
+        this.elementIcons[i].color = new Color(e.Color.r, e.Color.g, e.Color.b, 1);
       }
     }
 
