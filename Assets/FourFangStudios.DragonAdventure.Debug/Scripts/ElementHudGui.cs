@@ -32,44 +32,42 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
       var onPrevKey = Observable.Merge(
         OnKeyDown(KeyCode.O), 
         OnKeyDown(KeyCode.Joystick1Button3)
-      ).Do(_ => this._elementCycler.Previous());
+      ).Do(_ => { if (!this.scrolling) { this._elementCycler.Previous(); } });
       var onNextKey = Observable.Merge(
         OnKeyDown(KeyCode.P), 
         OnKeyDown(KeyCode.Joystick1Button4)
-      ).Do(_ => this._elementCycler.Next());
+      ).Do(_ => { if (!this.scrolling) { this._elementCycler.Next(); } });
       
       Observable.Merge(onPrevKey, onNextKey).Subscribe();
     }
     
     private IObservable<float> OnScrollVelocityXReachesZero() 
     {
-      return Observable.EveryFixedUpdate().Select(_ => this.iconsPanel.velocity.x).Where(v => (v == 0f)).Take(1);
+      return Observable.EveryUpdate().Select(_ => this.iconsPanel.velocity.x).Where(v => (v == 0f)).Take(1);
     }
 
     private void ResetIconsScrollView() 
     {
       int arraySize = this.elementIcons.Length;
       int halfArraySize = (int)(Mathf.Floor(arraySize/2));
-      this.iconsPanel.content.transform.position = this.initialIconsPanelContentPosition;
 
       for (int i = 0; i < arraySize; i++) {
         Element e = this._elementCycler.getElementAtCurrentIndexOffset(i-halfArraySize);
         //this.elementIcons[i].texture = this._elementIconMap[e]; // ADD TEXTURES
         this.elementIcons[i].color = new Color(e.Color.r, e.Color.g, e.Color.b, 1);
       }
+      this.iconsPanel.content.transform.position = this.initialIconsPanelContentPosition;
+      this.iconsPanel.velocity = Vector2.zero;
     }
 
     public void OnElementPreCycle(Element activeElem) 
     {
-      if (!this.scrolling) {
-        float scrollSpeed = -(this._elementCycler.CycleDirection * this.scrollSpeedMultiplier);
-        this.iconsPanel.velocity = new Vector2(scrollSpeed, 0f);
-        this.OnElementCycleStart();
-        this.OnScrollVelocityXReachesZero().Do(_ => { 
-          this.iconsPanel.velocity = Vector2.zero;
-          this.OnElementCycleEnd(); 
-        }).Subscribe();
-      }
+      float scrollSpeed = -(this._elementCycler.CycleDirection * this.scrollSpeedMultiplier);
+      this.iconsPanel.velocity = new Vector2(scrollSpeed, 0f);
+      this.OnElementCycleStart();
+      this.OnScrollVelocityXReachesZero().Do(_ => { 
+        this.OnElementCycleEnd(); 
+      }).Subscribe();
     }
 
     public void OnElementCycleStart() 
@@ -81,8 +79,8 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
     public void OnElementCycleEnd() 
     {
       UnityEngine.Debug.Log("onElementCycleEnd");
-      this.scrolling = false;
       this.ResetIconsScrollView();
+      this.scrolling = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
