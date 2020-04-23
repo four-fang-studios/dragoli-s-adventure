@@ -32,11 +32,19 @@ namespace FourFangStudios.DragonAdventure.Debug.Scripts
       var onPrevKey = Observable.Merge(
         OnKeyDown(KeyCode.O), 
         OnKeyDown(KeyCode.Joystick1Button3)
-      ).Do(_ => { if (!this.scrolling) { this._elementCycler.Previous(); } });
+      ).Do(_ => { 
+        if (!this.scrolling) { 
+          this._elementCycler.Previous(); 
+        }
+      });
       var onNextKey = Observable.Merge(
         OnKeyDown(KeyCode.P), 
         OnKeyDown(KeyCode.Joystick1Button4)
-      ).Do(_ => { if (!this.scrolling) { this._elementCycler.Next(); } });
+      ).Do(_ => { 
+        if (!this.scrolling) { 
+          this._elementCycler.Next(); 
+        }
+      });
       
       Observable.Merge(onPrevKey, onNextKey).Subscribe();
     }
